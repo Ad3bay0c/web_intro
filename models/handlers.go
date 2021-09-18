@@ -116,3 +116,31 @@ func EditBlog(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
+
+func UpdateBlog(w http.ResponseWriter, r *http.Request) {
+	param := chi.URLParam(r, "id")
+	id, err := strconv.ParseInt(param, 10, 64)
+
+	if err != nil {
+		message.Message = "Not a Valid ID"
+		message.Color = "danger"
+		http.Redirect(w, r, "/", http.StatusMovedPermanently)
+	}
+	title := strings.TrimSpace(r.FormValue("title"))
+	details := strings.TrimSpace(r.FormValue("details"))
+
+	blog := Blog{
+		ID:      id,
+		Title:   title,
+		Details: details,
+		Date:    time.Now().Local(),
+	}
+	for idx, val := range blogs.Blogs {
+		if val.ID == id {
+			blogs.Blogs[idx] = blog
+		}
+	}
+	message.Message = "Updated Successfully"
+	message.Color = "success"
+	http.Redirect(w, r, "/", http.StatusMovedPermanently)
+}
