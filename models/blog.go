@@ -3,6 +3,7 @@ package models
 import (
 	"encoding/json"
 	"io/ioutil"
+	"log"
 	"time"
 )
 
@@ -25,6 +26,19 @@ type Blogs struct {
 	Blogs []Blog	`json:"blogs"`
 }
 
+func init() {
+	loadFile()
+}
+
+func loadFile() {
+	res, err := ioutil.ReadFile("blog.csv")
+
+	if err != nil {
+		log.Printf(err.Error())
+	} else {
+		_ = json.Unmarshal(res, &blogs)
+	}
+}
 func (b Blogs) addToFile() error {
 	res, err := json.MarshalIndent(b, "", "\t")
 	if err != nil {
