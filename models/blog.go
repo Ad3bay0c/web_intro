@@ -20,6 +20,7 @@ type Message struct {
 	Message		string			`json:"message"`
 	Data		Blogs			`json:"data"`
 	Color		string			`json:"color"`
+	Post		Blog			`json:"post"`
 }
 
 type Blogs struct {
