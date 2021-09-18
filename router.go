@@ -11,6 +11,7 @@ func main() {
 	r := chi.NewRouter()
 
 	r.Get("/", models.Home)
+	r.Get("/blogs", models.BlogPage)
 	r.Post("/create", models.CreateBlog)
 
 	r.Route("/{id}", func(r chi.Router) {

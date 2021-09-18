@@ -3,7 +3,7 @@
         <a class="navbar-brand">Navbar</a>
         <div class="d-flex">
             <a href="/" class="navbar-brand">Home</a>
-            <a href="/" class="navbar-brand">Blogs</a>
+            <a href="/blogs" class="navbar-brand">Blogs</a>
         </div>
 <!--        <form class="d-flex">-->
 <!--            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->

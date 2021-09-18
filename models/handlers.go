@@ -19,7 +19,10 @@ func init() {
 
 }
 func Home(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles("frontend/home.gtpl", "frontend/navbar.gtpl")
+
+}
+func BlogPage(w http.ResponseWriter, r *http.Request) {
+	t, err := template.ParseFiles("frontend/create.gtpl", "frontend/navbar.gtpl")
 	if err != nil {
 		log.Printf("Error Opening File: %v", err.Error())
 		return
@@ -56,7 +59,7 @@ func CreateBlog(w http.ResponseWriter, r *http.Request)  {
 
 	message.Message = "Created Successfully"
 	message.Color 	= "success"
-	http.Redirect(w, r, "/", http.StatusMovedPermanently)
+	http.Redirect(w, r, "/blogs", http.StatusMovedPermanently)
 }
 
 func DeleteBlog(w http.ResponseWriter, r *http.Request) {
@@ -66,7 +69,7 @@ func DeleteBlog(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		message.Message = "Not a Valid ID"
 		message.Color = "danger"
-		http.Redirect(w, r, "/", http.StatusMovedPermanently)
+		http.Redirect(w, r, "/blogs", http.StatusMovedPermanently)
 	}
 
 	for idx, v := range blogs.Blogs {
@@ -85,7 +88,7 @@ func DeleteBlog(w http.ResponseWriter, r *http.Request) {
 	message.Message = "Deleted Successfully"
 	message.Color = "success"
 
-	http.Redirect(w, r, "/", http.StatusMovedPermanently)
+	http.Redirect(w, r, "/blogs", http.StatusMovedPermanently)
 }
 
 func EditBlog(w http.ResponseWriter, r *http.Request) {
@@ -95,7 +98,7 @@ func EditBlog(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		message.Message = "Not a Valid ID"
 		message.Color = "danger"
-		http.Redirect(w, r, "/", http.StatusMovedPermanently)
+		http.Redirect(w, r, "/blogs", http.StatusMovedPermanently)
 	}
 	var blog Blog
 	for _, val := range blogs.Blogs {
@@ -103,7 +106,7 @@ func EditBlog(w http.ResponseWriter, r *http.Request) {
 			blog = val
 		}
 	}
-	t, err := template.ParseFiles("frontend/home.gtpl", "frontend/navbar.gtpl")
+	t, err := template.ParseFiles("frontend/create.gtpl", "frontend/navbar.gtpl")
 	if err != nil {
 		log.Printf("Error Opening File: %v", err.Error())
 		return
@@ -142,5 +145,5 @@ func UpdateBlog(w http.ResponseWriter, r *http.Request) {
 	}
 	message.Message = "Updated Successfully"
 	message.Color = "success"
-	http.Redirect(w, r, "/", http.StatusMovedPermanently)
+	http.Redirect(w, r, "/blogs", http.StatusMovedPermanently)
 }
