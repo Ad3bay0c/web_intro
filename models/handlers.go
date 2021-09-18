@@ -15,11 +15,18 @@ var (
 	message = Message{}
 )
 
-func init() {
-
-}
 func Home(w http.ResponseWriter, r *http.Request) {
+	t, err := template.ParseFiles("frontend/home.gtpl", "frontend/navbar.gtpl")
+	if err != nil {
+		log.Printf("Error Opening File: %v", err.Error())
+		return
+	}
 
+	err = t.Execute(w, blogs)
+	if err != nil {
+		log.Printf("Error Opening File: %v", err.Error())
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
 }
 func BlogPage(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("frontend/create.gtpl", "frontend/navbar.gtpl")
