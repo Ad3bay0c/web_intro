@@ -25,6 +25,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	message.Data = blogs
+	message.Post = Blog{}
 
 	err = t.Execute(w, message)
 	message.Message = ""
@@ -85,4 +86,33 @@ func DeleteBlog(w http.ResponseWriter, r *http.Request) {
 	message.Color = "success"
 
 	http.Redirect(w, r, "/", http.StatusMovedPermanently)
+}
+
+func EditBlog(w http.ResponseWriter, r *http.Request) {
+	param := chi.URLParam(r, "id")
+	id, err := strconv.ParseInt(param, 10, 64)
+
+	if err != nil {
+		message.Message = "Not a Valid ID"
+		message.Color = "danger"
+		http.Redirect(w, r, "/", http.StatusMovedPermanently)
+	}
+	var blog Blog
+	for _, val := range blogs.Blogs {
+		if val.ID == id {
+			blog = val
+		}
+	}
+	t, err := template.ParseFiles("frontend/home.gtpl", "frontend/navbar.gtpl")
+	if err != nil {
+		log.Printf("Error Opening File: %v", err.Error())
+		return
+	}
+	message.Data = blogs
+	message.Post = blog
+	err = t.Execute(w, message)
+	if err != nil {
+		log.Printf("Error Opening File: %v", err.Error())
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
 }
