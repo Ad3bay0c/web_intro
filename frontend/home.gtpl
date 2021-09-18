@@ -33,7 +33,6 @@
                                   name="details" rows="3">{{if .Post.ID}}{{.Post.Details}}{{end}}</textarea>
                     </div>
                     <div class="mb-3">
-                        <input type="hidden" name="blogId" value="{{if .Post.ID}}{{.Post.ID}}{{end}}">
                             <button type="submit" class="btn btn-dark btn-block float-right form-control">
                                 {{if .Post.ID}}Update Blog {{else}}Create New Blog Post{{end}}
                             </button>
