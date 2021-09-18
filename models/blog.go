@@ -17,9 +17,9 @@ type Blog struct {
 }
 
 type Message struct {
-	Message		string	`json:"message"`
-	Blogs		Blog	`json:"blogs"`
-	Color		string	`json:"color"`
+	Message		string			`json:"message"`
+	Data		Blogs			`json:"data"`
+	Color		string			`json:"color"`
 }
 
 type Blogs struct {
