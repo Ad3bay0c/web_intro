@@ -7,7 +7,7 @@
 </head>
 <body>
     <header class="mb-5">
-        {{template "navbar.gtpl"}}
+        {{template "Navbar"}}
     </header>
     <div class="container">
         <div class="row justify-content-center">
@@ -17,8 +17,8 @@
                     {{ .Message}}
                 </div>
                 {{end}}
-                <form action="{{if .Post.ID}}/{{.Post.ID}}/update{{ else}}/create{{end}}"
-                      method="{{if .Post.ID}}PUT{{else}}POST{{end}}">
+                <form action="{{if .Post.ID}}/{{ .Post.ID}}/update{{ else}}/create{{end}}"
+                      method="POST">
                     <h4>{{if .Post.ID}}Update Blog{{else}}Create New Blog{{end}}</h4>
                     <div class="mb-3">
                         <label for="title" class="form-label">Blog Title</label>
