@@ -24,13 +24,13 @@
                         <label for="title" class="form-label">Blog Title</label>
                         <input type="text" name="title" class="form-control" id="title"
                                value="{{if .Post.ID}}{{.Post.Title}}{{end}}"
-                               placeholder="Go is the best">
+                               placeholder="Go is the best" required>
                     </div>
                     <div class="mb-3">
                         <label for="details" class="form-label">Blog Details</label>
                         <textarea class="form-control" id="details"
                                   placeholder="Enter Details..."
-                                  name="details" rows="3">{{if .Post.ID}}{{.Post.Details}}{{end}}</textarea>
+                                  name="details" rows="3" required>{{if .Post.ID}}{{.Post.Details}}{{end}}</textarea>
                     </div>
                     <div class="mb-3">
                             <button type="submit" class="btn btn-dark btn-block float-right form-control">
