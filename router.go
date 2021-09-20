@@ -17,7 +17,7 @@ func main() {
 	r.Route("/{id}", func(r chi.Router) {
 		r.Get("/delete", models.DeleteBlog)
 		r.Get("/edit", models.EditBlog)
-		r.Get("/update", models.UpdateBlog)
+		r.Post("/update", models.UpdateBlog)
 	})
 
 	log.Printf("Server Started at Localhost:4000")
