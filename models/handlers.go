@@ -1,8 +1,8 @@
 package models
 
 import (
+	"fmt"
 	"github.com/go-chi/chi/v5"
-	"html/template"
 	"log"
 	"net/http"
 	"strconv"
@@ -16,28 +16,18 @@ var (
 )
 
 func Home(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles("frontend/home.gtpl", "frontend/navbar.gtpl")
-	if err != nil {
-		log.Printf("Error Opening File: %v", err.Error())
-		return
-	}
-
-	err = t.Execute(w, blogs)
+	err := t.ExecuteTemplate(w, "home.gtpl", blogs)
 	if err != nil {
 		log.Printf("Error Opening File: %v", err.Error())
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
 func BlogPage(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles("frontend/create.gtpl", "frontend/navbar.gtpl")
-	if err != nil {
-		log.Printf("Error Opening File: %v", err.Error())
-		return
-	}
+
 	message.Data = blogs
 	message.Post = Blog{}
 
-	err = t.Execute(w, message)
+	err := t.ExecuteTemplate(w, "create.gtpl", message)
 	message.Message = ""
 	message.Color = ""
 
@@ -105,22 +95,28 @@ func EditBlog(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		message.Message = "Not a Valid ID"
 		message.Color = "danger"
+		log.Println(err.Error())
 		http.Redirect(w, r, "/blogs", http.StatusMovedPermanently)
 	}
-	var blog Blog
+	var blog = &Blog{}
 	for _, val := range blogs.Blogs {
 		if val.ID == id {
-			blog = val
+			blog.ID = val.ID
+			blog.Details = val.Details
+			blog.Title = val.Title
+			blog.Date = val.Date
 		}
 	}
-	t, err := template.ParseFiles("frontend/create.gtpl", "frontend/navbar.gtpl")
-	if err != nil {
-		log.Printf("Error Opening File: %v", err.Error())
-		return
+
+	if blog == nil {
+		message.Message = fmt.Sprintf("ID Does Not Exist: %v", id)
+		message.Color = "danger"
+		http.Redirect(w, r, "/blogs", http.StatusMovedPermanently)
+
 	}
 	message.Data = blogs
-	message.Post = blog
-	err = t.Execute(w, message)
+	message.Post = *blog
+	err = t.ExecuteTemplate(w,"create.gtpl", message)
 	if err != nil {
 		log.Printf("Error Opening File: %v", err.Error())
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -134,7 +130,8 @@ func UpdateBlog(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		message.Message = "Not a Valid ID"
 		message.Color = "danger"
-		http.Redirect(w, r, "/", http.StatusMovedPermanently)
+		log.Print(err.Error())
+		http.Redirect(w, r, "/blogs", http.StatusMovedPermanently)
 	}
 	title := strings.TrimSpace(r.FormValue("title"))
 	details := strings.TrimSpace(r.FormValue("details"))
@@ -152,5 +149,6 @@ func UpdateBlog(w http.ResponseWriter, r *http.Request) {
 	}
 	message.Message = "Updated Successfully"
 	message.Color = "success"
+
 	http.Redirect(w, r, "/blogs", http.StatusMovedPermanently)
 }
