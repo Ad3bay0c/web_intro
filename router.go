@@ -18,6 +18,7 @@ func main() {
 		r.Get("/delete", models.DeleteBlog)
 		r.Get("/edit", models.EditBlog)
 		r.Post("/update", models.UpdateBlog)
+		r.Get("/", models.ViewBlog)
 	})
 
 	log.Printf("Server Started at Localhost:4000")
