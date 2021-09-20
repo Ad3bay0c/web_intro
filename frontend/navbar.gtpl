@@ -1,7 +1,7 @@
 {{define "Navbar"}}
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand">Navbar</a>
+        <a class="navbar-brand">Bayus Blog</a>
         <div class="d-flex">
             <a href="/" class="navbar-brand">Home</a>
             <a href="/blogs" class="navbar-brand">Blogs</a>
