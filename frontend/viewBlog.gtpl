@@ -10,11 +10,32 @@
     {{template "Navbar"}}
 </header>
 <div class="container">
-    <h4>
-        <strong>{{.Title}}</strong>
-    </h4>
-    <hr>
-    <p>{{.Details}}</p>
+    <div class="row">
+        <div class="col-md-12 float-right mb-2">
+            <a href="/" class="btn btn-dark">Back</a>
+        </div>
+    </div>
+    <div class="shadow p-3 mb-5 bg-body rounded">
+        <h4>
+            <strong>{{.Title}}</strong>
+        </h4>
+        <hr>
+        <p>{{.Details}}</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-lg-4">
+            <form action="/{{.ID}}/comment/create" method="post">
+                <textarea class="form-control" name="comment" rows="5" placeholder="Write your comment" required></textarea>
+                <br>
+                <button class="btn btn-dark" style="float: right" type="submit">Comment</button>
+            </form>
+        </div>
+        <div class="col-md-12 col-sm-12 col-lg-6">
+
+        </div>
+    </div>
+
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
