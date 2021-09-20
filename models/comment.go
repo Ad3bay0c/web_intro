@@ -26,21 +26,27 @@ func CreateComment(w http.ResponseWriter, r *http.Request){
 		return
 	}
 	if strings.TrimSpace(template.HTMLEscapeString(r.FormValue("comment"))) == "" {
-		w.WriteHeader(http.StatusBadRequest)
 		message.Message = "Please type in a valid comment"
 		message.Color = "danger"
 		http.Redirect(w, r, fmt.Sprintf("/%d/", id), http.StatusMovedPermanently)
 		return
 	}
 
-	comment := &Comment{
+	comment := Comment{
 		ID: time.Now().Unix(),
 		Comment: template.HTMLEscapeString(strings.TrimSpace(r.FormValue("comment"))),
 	}
 	for idx, val := range blogs.Blogs {
 		if val.ID == id {
-			blogs.Blogs[idx].Comments[id] = comment
+			blogs.Blogs[idx].Comments[comment.ID] = comment
 			blogs.Blogs[idx].Comment++
 		}
 	}
+	_ = blogs.addToFile()
+
+	message.Message = "Comment Created Successfully"
+	message.Color = "success"
+
+	http.Redirect(w, r, fmt.Sprintf("/%d/", id), http.StatusMovedPermanently)
+
 }

@@ -17,7 +17,7 @@ type Blog struct {
 	Comment		int					`json:"comment"`
 	View		int					`json:"view"`
 	Date		time.Time			`json:"date"`
-	Comments	map[int64]*Comment	`json:"comments"`
+	Comments	map[int64]Comment	`json:"comments"`
 }
 
 type Message struct {
