@@ -47,9 +47,9 @@ func ViewBlog(w http.ResponseWriter, r *http.Request) {
 	}
 	var blog Blog
 
-	for idx, val := range blogs.Blogs {
+	for _, val := range blogs.Blogs {
 		if val.ID == id {
-			blogs.Blogs[idx].View++
+			//blogs.Blogs[idx].View++
 			blog = val
 		}
 	}
