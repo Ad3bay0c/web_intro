@@ -4,64 +4,69 @@
 			"id": 1632001829,
 			"title": "PHP",
 			"details": "Hypertext Pre-Processor is an open source language that is basically used for building robust web application",
-			"comment": 0,
-			"view": 1,
+			"comment": 1,
+			"view": 2,
 			"date": "2021-09-18T22:50:29.664651273+01:00",
-			"comments": null
+			"comments": {
+				"1632177745": {
+					"id": 1632177745,
+					"comment": "I think it has more definition"
+				}
+			}
 		},
 		{
 			"id": 1632001924,
 			"title": "Golang",
 			"details": "Golang is a fast compiled, garbage collector and concurrent system programming language developed by google for building fast, reliable and efficient software at scale",
 			"comment": 0,
-			"view": 0,
+			"view": 1,
 			"date": "2021-09-18T22:52:04.393260355+01:00",
-			"comments": null
+			"comments": {}
 		},
 		{
 			"id": 1632002387,
 			"title": "Javascript",
 			"details": "Javascript is an open source language that is basically used for building dynamic web application at large. It can be used for both frontend and backend",
 			"comment": 0,
-			"view": 0,
+			"view": 1,
 			"date": "2021-09-18T22:59:47.638176905+01:00",
-			"comments": null
+			"comments": {}
 		},
 		{
 			"id": 1632003455,
 			"title": "React with Golang",
 			"details": "Here you will learn React (TypeScript) with Golang",
-			"comment": 0,
-			"view": 0,
+			"comment": 1,
+			"view": 2,
 			"date": "2021-09-19T00:13:33.473188809+01:00",
-			"comments": null
-		},
-		{
-			"id": 1632007883,
-			"title": "Gibberish",
-			"details": "This is a total Nonsense, We Move you hear",
-			"comment": 0,
-			"view": 0,
-			"date": "2021-09-19T00:31:23.960434877+01:00",
-			"comments": null
-		},
-		{
-			"id": 1632058523,
-			"title": "Golang",
-			"details": "Golang Golang",
-			"comment": 0,
-			"view": 0,
-			"date": "2021-09-19T14:35:23.168519724+01:00",
-			"comments": null
+			"comments": {
+				"1632178934": {
+					"id": 1632178934,
+					"comment": "I will love to learn this, Please can you provide more useful material"
+				}
+			}
 		},
 		{
 			"id": 1632170038,
 			"title": "How to check all currently working ports on your computer and how to kill any via terminal",
 			"details": "In this article, you will learn how to list out all the ports listening on your computer system and at the end of the article you will be able to know how to kill anyone in case you wanna work with that same port",
-			"comment": 0,
-			"view": 0,
+			"comment": 3,
+			"view": 4,
 			"date": "2021-09-20T23:01:02.505169+01:00",
-			"comments": null
+			"comments": {
+				"1632177671": {
+					"id": 1632177671,
+					"comment": "Yes, Nice"
+				},
+				"1632177701": {
+					"id": 1632177701,
+					"comment": "The Solution really helped me a lot"
+				},
+				"1632178720": {
+					"id": 1632178720,
+					"comment": "Thank you for this wonderful and insightful article"
+				}
+			}
 		}
 	]
 }
