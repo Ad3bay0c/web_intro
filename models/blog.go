@@ -14,6 +14,8 @@ type Blog struct {
 	ID			int64		`json:"id"`
 	Title		string		`json:"title,omitempty"`
 	Details		string		`json:"details,omitempty"`
+	Comment		int			`json:"comment"`
+	View		int			`json:"view"`
 	Date		time.Time	`json:"date"`
 }
 
