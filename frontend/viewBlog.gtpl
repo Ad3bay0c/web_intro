@@ -24,6 +24,7 @@
     </div>
 
     <div class="row">
+        {{template "Alert"}}
         <div class="col-md-12 col-sm-12 col-lg-4">
             <form action="/{{.ID}}/comment/create" method="post">
                 <textarea class="form-control" name="comment" rows="5" placeholder="Write your comment" required></textarea>
