@@ -37,6 +37,30 @@ func BlogPage(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func ViewBlog(w http.ResponseWriter, r *http.Request) {
+	param := chi.URLParam(r, "id")
+
+	id, err := strconv.ParseInt(param, 10, 64)
+	if err != nil {
+		log.Printf("Invalid ID")
+		http.Redirect(w, r, "/", http.StatusMovedPermanently)
+	}
+	var blog Blog
+
+	for _, val := range blogs.Blogs {
+		if val.ID == id {
+			blog = val
+		}
+	}
+	w.WriteHeader(http.StatusOK)
+	err = t.ExecuteTemplate(w, "viewBlog.gtpl", blog)
+
+	if err != nil {
+		log.Printf("Error Opening File: %v", err.Error())
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+
+}
 func CreateBlog(w http.ResponseWriter, r *http.Request)  {
 	title := strings.TrimSpace(r.FormValue("title"))
 	details := strings.TrimSpace(r.FormValue("details"))
