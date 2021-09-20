@@ -7,10 +7,10 @@
 </head>
 <body>
 <header class="mb-5">
-    {{template "navbar.gtpl"}}
+    {{template "Navbar"}}
 </header>
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-centers">
         {{with .Blogs}}{{range $idx, $blog := . }}
         <div class="col-12 mb-3">
             <div class="card">
