@@ -94,6 +94,7 @@ func CreateBlog(w http.ResponseWriter, r *http.Request)  {
 		Title:   title,
 		Details: details,
 		Date:    time.Now().Local(),
+		Comments: map[int64]Comment{},
 	}
 	blogs.Blogs = append(blogs.Blogs, blog)
 	err := blogs.addToFile()
