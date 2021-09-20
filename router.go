@@ -19,6 +19,10 @@ func main() {
 		r.Get("/edit", models.EditBlog)
 		r.Post("/update", models.UpdateBlog)
 		r.Get("/", models.ViewBlog)
+
+		r.Route("/comment", func(r chi.Router) {
+			r.Post("/create", models.CreateComment)
+		})
 	})
 
 	log.Printf("Server Started at Localhost:4000")
