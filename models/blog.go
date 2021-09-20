@@ -2,6 +2,7 @@ package models
 
 import (
 	"encoding/json"
+	"html/template"
 	"io/ioutil"
 	"log"
 	"time"
@@ -26,9 +27,11 @@ type Message struct {
 type Blogs struct {
 	Blogs []Blog	`json:"blogs"`
 }
+var t *template.Template
 
 func init() {
 	loadFile()
+	t = template.Must(template.ParseGlob("frontend/*"))
 }
 
 func loadFile() {
