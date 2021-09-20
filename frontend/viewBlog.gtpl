@@ -17,16 +17,20 @@
     </div>
     <div class="shadow p-3 mb-5 bg-body rounded">
         <h4>
-            <strong>{{.Title}}</strong>
+            <strong>{{.Post.Title}}</strong>
         </h4>
         <hr>
-        <p>{{.Details}}</p>
+        <p>{{.Post.Details}}</p>
     </div>
 
     <div class="row">
-        {{template "Alert"}}
+        {{if .Message}}
+        <div class="alert alert-{{.Color}}">
+            {{ .Message}}
+        </div>
+        {{end}}
         <div class="col-md-12 col-sm-12 col-lg-4">
-            <form action="/{{.ID}}/comment/create" method="post">
+            <form action="/{{.Post.ID}}/comment/create" method="post">
                 <textarea class="form-control" name="comment" rows="5" placeholder="Write your comment" required></textarea>
                 <br>
                 <button class="btn btn-dark" style="float: right" type="submit">Comment</button>

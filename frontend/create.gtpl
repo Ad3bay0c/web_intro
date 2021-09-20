@@ -12,7 +12,11 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-6">
-                {{template "Alert"}}
+                {{if .Message}}
+                <div class="alert alert-{{.Color}}">
+                    {{ .Message}}
+                </div>
+                {{end}}
                 <form action="{{if .Post.ID}}/{{ .Post.ID}}/update{{ else}}/create{{end}}"
                       method="POST">
                     <h4>{{if .Post.ID}}Update Blog{{else}}Create New Blog{{end}}</h4>

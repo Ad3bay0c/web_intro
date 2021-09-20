@@ -53,9 +53,12 @@ func ViewBlog(w http.ResponseWriter, r *http.Request) {
 			blog = val
 		}
 	}
+	message.Post = blog
 	_ = blogs.addToFile()
 	w.WriteHeader(http.StatusOK)
-	err = t.ExecuteTemplate(w, "viewBlog.gtpl", blog)
+	err = t.ExecuteTemplate(w, "viewBlog.gtpl", message)
+	message.Message = ""
+	message.Color = ""
 
 	if err != nil {
 		log.Printf("Error Opening File: %v", err.Error())

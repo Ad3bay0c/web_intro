@@ -11,12 +11,13 @@ import (
 const FILENAME = "blog.csv"
 
 type Blog struct {
-	ID			int64		`json:"id"`
-	Title		string		`json:"title,omitempty"`
-	Details		string		`json:"details,omitempty"`
-	Comment		int			`json:"comment"`
-	View		int			`json:"view"`
-	Date		time.Time	`json:"date"`
+	ID			int64				`json:"id"`
+	Title		string				`json:"title,omitempty"`
+	Details		string				`json:"details,omitempty"`
+	Comment		int					`json:"comment"`
+	View		int					`json:"view"`
+	Date		time.Time			`json:"date"`
+	Comments	map[int64]*Comment	`json:"comments"`
 }
 
 type Message struct {
