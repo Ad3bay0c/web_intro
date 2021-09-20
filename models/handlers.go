@@ -71,19 +71,19 @@ func CreateBlog(w http.ResponseWriter, r *http.Request)  {
 	details := strings.TrimSpace(template.HTMLEscapeString(r.FormValue("details")))
 
 	if title == "" && details == "" {
-		message.Message = `<ul><i>Title is required</i><i>Details is required</i></ul>`
+		message.Message = fmt.Sprintf("-Title and Details is required")
 		message.Color 	= "danger"
 		http.Redirect(w, r, "/blogs", http.StatusMovedPermanently)
 		return
 	}
 	if title == "" {
-		message.Message = `<ul><i>Title is required</i></ul>`
+		message.Message = fmt.Sprintf("-Title is required")
 		message.Color 	= "danger"
 		http.Redirect(w, r, "/blogs", http.StatusMovedPermanently)
 		return
 	}
 	if details == "" {
-		message.Message = `<ul><i>Details is required</i></ul>`
+		message.Message = fmt.Sprintf("-Details is required")
 		message.Color 	= "danger"
 		http.Redirect(w, r, "/blogs", http.StatusMovedPermanently)
 		return
