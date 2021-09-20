@@ -14,7 +14,7 @@ var (
 	blogs = Blogs{}
 	message = Message{}
 )
-
+//var wg *sync.WaitGroup
 func Home(w http.ResponseWriter, r *http.Request) {
 	err := t.ExecuteTemplate(w, "home.gtpl", blogs)
 	if err != nil {
@@ -47,11 +47,13 @@ func ViewBlog(w http.ResponseWriter, r *http.Request) {
 	}
 	var blog Blog
 
-	for _, val := range blogs.Blogs {
+	for idx, val := range blogs.Blogs {
 		if val.ID == id {
+			blogs.Blogs[idx].View++
 			blog = val
 		}
 	}
+	_ = blogs.addToFile()
 	w.WriteHeader(http.StatusOK)
 	err = t.ExecuteTemplate(w, "viewBlog.gtpl", blog)
 
