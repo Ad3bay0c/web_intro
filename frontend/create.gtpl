@@ -44,7 +44,7 @@
                 {{range .Data.Blogs}}
 
                 <div class="row mb-3">
-                    <a href="#">{{ .Title}}</a>
+                    <a href="#" style="text-decoration: none">{{ .Title}}</a>
                     <div class="row">
                         <a href="/{{.ID}}/edit" class="col-2 btn btn-primary btn-sm">Edit</a>
                         <a href="/{{.ID}}/delete" onclick="return confirm('Are you sure you want to delete?')"
