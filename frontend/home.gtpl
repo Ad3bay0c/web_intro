@@ -18,10 +18,10 @@
                     <a href="/{{$blog.ID}}/" class="card-title text-success" style="text-decoration-line: none">{{ $blog.Title}}</a>
                     <div class="row card-subtitle mt-2">
                         <div class="text-muted col-3">
-                            <h6>Comments: <b class="badge bg-success">12</b></h6>
+                            <h6>Comments: <b class="badge bg-success">{{.Comment}}</b></h6>
                         </div>
                         <div class="text-muted col-3">
-                            <h6>Views: <b class="badge bg-success">12</b></h6>
+                            <h6>Views: <b class="badge bg-success">{{ .View}}</b></h6>
                         </div>
                     </div>
                 </div>
