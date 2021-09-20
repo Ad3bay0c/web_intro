@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"github.com/go-chi/chi/v5"
+	"html/template"
 	"log"
 	"net/http"
 	"strconv"
@@ -66,8 +67,27 @@ func ViewBlog(w http.ResponseWriter, r *http.Request) {
 
 }
 func CreateBlog(w http.ResponseWriter, r *http.Request)  {
-	title := strings.TrimSpace(r.FormValue("title"))
-	details := strings.TrimSpace(r.FormValue("details"))
+	title := strings.TrimSpace(template.HTMLEscapeString(r.FormValue("title")))
+	details := strings.TrimSpace(template.HTMLEscapeString(r.FormValue("details")))
+
+	if title == "" && details == "" {
+		message.Message = `<ul><i>Title is required</i><i>Details is required</i></ul>`
+		message.Color 	= "danger"
+		http.Redirect(w, r, "/blogs", http.StatusMovedPermanently)
+		return
+	}
+	if title == "" {
+		message.Message = `<ul><i>Title is required</i></ul>`
+		message.Color 	= "danger"
+		http.Redirect(w, r, "/blogs", http.StatusMovedPermanently)
+		return
+	}
+	if details == "" {
+		message.Message = `<ul><i>Details is required</i></ul>`
+		message.Color 	= "danger"
+		http.Redirect(w, r, "/blogs", http.StatusMovedPermanently)
+		return
+	}
 
 	blog := Blog{
 		ID:      time.Now().Unix(),
