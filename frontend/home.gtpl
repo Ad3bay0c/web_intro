@@ -12,11 +12,11 @@
 <div class="container">
     <div class="row justify-content-centers">
         {{with .Blogs}}{{range $idx, $blog := . }}
-        <div class="col-12 mb-3">
-            <div class="card">
+        <div class="col-12 mb-2">
+            <div class="shadow-lg bg-body rounded">
                 <div class="card-body">
-                    <a href="#" class="card-title text-success" style="text-decoration-line: none">{{ $blog.Title}}</a>
-                    <div class="row mt-3 card-subtitle ">
+                    <a href="/{{$blog.ID}}/" class="card-title text-success" style="text-decoration-line: none">{{ $blog.Title}}</a>
+                    <div class="row card-subtitle mt-2">
                         <div class="text-muted col-3">
                             <h6>Comments: <b class="badge bg-success">12</b></h6>
                         </div>
