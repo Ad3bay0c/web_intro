@@ -33,11 +33,15 @@
             <form action="/{{.Post.ID}}/comment/create" method="post">
                 <textarea class="form-control" name="comment" rows="5" placeholder="Write your comment" required></textarea>
                 <br>
-                <button class="btn btn-dark" style="float: right" type="submit">Comment</button>
+                <button class="btn btn-dark" type="submit">Comment</button>
             </form>
         </div>
         <div class="col-md-12 col-sm-12 col-lg-6">
-
+            <h5>Comments <b class="badge bg-success">{{.Post.Comment}}</b></h5>
+            <hr>
+            {{with .Post.Comments}}{{range $key, $comment := .}}
+                <div class="mb-3" style="border-bottom: dotted lightgreen">{{$comment.Comment}}</div>
+            {{end}}{{end}}
         </div>
     </div>
 
